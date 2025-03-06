@@ -47,19 +47,13 @@ export interface GenerateContentStreamResult {
 }
 
 interface Image {
-  gcsUri: string;
-  imageBytes: string;
+  gcsUri?: string;
+  bytesBase64Encoded: string;
   mimeType: string;
 }
 
-interface GeneratedImage {
-  image?: Image[];
-  raiFilteredReason?: string[];
-  enhancedPrompt?: string[];
-}
-
 export interface GenerateImagesResult {
-  generatedImages?: Array<GeneratedImage>;
+  predictions?: Image[];
 }
 
 /**

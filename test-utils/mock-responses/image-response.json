@@ -1,0 +1,12 @@
+{
+  "predictions": [
+    {
+      "bytesBase64Encoded": "test-image-data",
+      "mimeType": "image/jpeg"
+    },
+    {
+      "bytesBase64Encoded": "test-image-data",
+      "mimeType": "image/jpeg"
+    }
+  ]
+}

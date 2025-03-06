@@ -20,7 +20,6 @@ import {
   CountTokensRequest,
   EmbedContentRequest,
   GenerateContentRequest,
-  GenerateImageRequest,
   ModelParams,
   Part,
   _CountTokensRequestInternal,

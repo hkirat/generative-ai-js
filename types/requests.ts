@@ -34,7 +34,6 @@ export interface BaseParams {
   generationConfig?: GenerationConfig;
 }
 
-
 enum SafetyFilterLevel {
   BLOCK_LOW_AND_ABOVE = 'BLOCK_LOW_AND_ABOVE',
   BLOCK_MEDIUM_AND_ABOVE = 'BLOCK_MEDIUM_AND_ABOVE',
@@ -95,7 +94,7 @@ export interface ModelParams extends BaseParams {
  * @public
  */
 export interface GenerateImageRequest {
-  instances: {prompt: string}[];
+  instances: Array<{ prompt: string }>;
   parameters: BaseImageParams;
 }
 
