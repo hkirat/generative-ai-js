@@ -46,6 +46,22 @@ export interface GenerateContentStreamResult {
   response: Promise<EnhancedGenerateContentResponse>;
 }
 
+interface Image {
+  gcsUri: string;
+  imageBytes: string;
+  mimeType: string;
+}
+
+interface GeneratedImage {
+  image?: Image[];
+  raiFilteredReason?: string[];
+  enhancedPrompt?: string[];
+}
+
+export interface GenerateImagesResult {
+  generatedImages?: Array<GeneratedImage>;
+}
+
 /**
  * Response object wrapped with helper methods.
  *

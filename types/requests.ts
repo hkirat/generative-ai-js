@@ -34,6 +34,50 @@ export interface BaseParams {
   generationConfig?: GenerationConfig;
 }
 
+
+enum SafetyFilterLevel {
+  BLOCK_LOW_AND_ABOVE = 'BLOCK_LOW_AND_ABOVE',
+  BLOCK_MEDIUM_AND_ABOVE = 'BLOCK_MEDIUM_AND_ABOVE',
+  BLOCK_ONLY_HIGH = 'BLOCK_ONLY_HIGH',
+  BLOCK_NONE = 'BLOCK_NONE'
+}
+
+enum PersonGeneration {
+  DONT_ALLOW = 'DONT_ALLOW',
+  ALLOW_ADULT = 'ALLOW_ADULT',
+  ALLOW_ALL = 'ALLOW_ALL'
+}
+
+enum ImagePromptLanguage {
+  auto = 'auto',
+  en = 'en',
+  ja = 'ja',
+  ko = 'ko',
+  hi = 'hi',
+}
+
+export interface BaseImageParams {
+  outputGcsUri?: string;
+  negativePrompt?: string;
+  numberOfImages?: number;
+  aspectRatio?: string;
+  guidanceScale?: number;
+  seed?: number;
+  safetyFilterLevel?: SafetyFilterLevel;
+  personGeneration?: PersonGeneration;
+  includeSafetyAttributes?: boolean;
+  includeRaiReason?: boolean;
+  language?: ImagePromptLanguage;
+  outputMimeType?: string;
+  outputCompressionQuality?: number;
+  addWatermark?: boolean;
+  enhancePrompt?: boolean;
+}
+
+export interface ImageModelParams extends BaseImageParams {
+  model: string;
+}
+
 /**
  * Params passed to {@link GoogleGenerativeAI.getGenerativeModel}.
  * @public
@@ -45,6 +89,16 @@ export interface ModelParams extends BaseParams {
   systemInstruction?: string | Part | Content;
   cachedContent?: CachedContent;
 }
+
+/**
+ * Request sent to `generateImage` endpoint.
+ * @public
+ */
+export interface GenerateImageRequest {
+  instances: {prompt: string}[];
+  parameters: BaseImageParams;
+}
+
 
 /**
  * Request sent to `generateContent` endpoint.
@@ -181,7 +235,7 @@ export interface BatchEmbedContentsRequest {
 }
 
 /**
- * Params passed to getGenerativeModel() or GoogleAIFileManager().
+ * Params passed to getGenerativeModel() or GoogleAIFileManager() or getImageModel().
  * @public
  */
 export interface RequestOptions {
