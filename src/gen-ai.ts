@@ -19,8 +19,9 @@ import {
   GoogleGenerativeAIError,
   GoogleGenerativeAIRequestInputError,
 } from "./errors";
-import { CachedContent, ModelParams, RequestOptions } from "../types";
+import { CachedContent, ImageModelParams, ModelParams, RequestOptions } from "../types";
 import { GenerativeModel } from "./models/generative-model";
+import { ImageModel } from "./models/image-models";
 
 export { ChatSession } from "./methods/chat-session";
 export { GenerativeModel };
@@ -46,6 +47,19 @@ export class GoogleGenerativeAI {
       );
     }
     return new GenerativeModel(this.apiKey, modelParams, requestOptions);
+  }
+
+  getImageModel(
+    modelParams: ImageModelParams,
+    requestOptions?: RequestOptions,
+  ): ImageModel {
+    if (!modelParams.model) {
+      throw new GoogleGenerativeAIError(
+        `Must provide a model name. ` +
+          `Example: genai.getImageModel({ model: 'my-model-name' })`,
+      );
+    }
+    return new ImageModel(this.apiKey, modelParams, requestOptions);
   }
 
   /**
