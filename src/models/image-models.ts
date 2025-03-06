@@ -21,12 +21,17 @@ export class ImageModel {
             ...requestConfig,
         }
 
+        const generativeModelRequestOptions: SingleRequestOptions = {
+            ...this._requestOptions,
+            ...requestOptions,
+        };
+
         return generateImages(this.apiKey, this.model, {
             instances: [{prompt: prompt}],
             parameters: {
                 ...this.modelParams,
                 ...params,
             },
-        }, requestOptions);
+        }, generativeModelRequestOptions);
     }
 }
