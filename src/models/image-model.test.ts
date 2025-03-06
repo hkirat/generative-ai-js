@@ -22,7 +22,7 @@ import * as request from "../requests/request";
 import { expect } from "chai";
 
 describe("ImageModel", () => {
-  it("countTokens errors if contents and generateContentRequest are both defined", async () => {
+  it("Image model returns the right length of predictions", async () => {
     const genModel = new ImageModel(
       "apiKey",
       {
